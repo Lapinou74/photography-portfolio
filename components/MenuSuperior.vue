@@ -3,11 +3,11 @@
     x-data="{ mobileMenuOpen : false }"
     class="flex flex-wrap flex-row justify-between md:items-center md:space-x-4 bg-white py-6 px-6 relative font-extralight"
   >
-    <a href="/" class="block">
+    <nuxt-link :to="localePath('/')" class="block">
       <span class="ext-indigo-600 hover:text-gray-400 font-light text-2xl "
         >sergio perea</span
       >
-    </a>
+    </nuxt-link>
     <button
       @click="mobileMenuOpen = !mobileMenuOpen"
       class="inline-block md:hidden w-8 h-8 bg-gray-200 text-gray-600 p-1"
@@ -29,25 +29,64 @@
       :class="{ flex: mobileMenuOpen, hidden: !mobileMenuOpen }"
       @click.away="mobileMenuOpen = false"
     >
-      <a
-        href="/"
+      <nuxt-link
+        :to="localePath('/')"
         class="block py-1 text-gray-600 hover:text-gray-400 font-extralight"
-        >Inicio</a
+        >{{ $t('nav.home') }}</nuxt-link
       >
-      <a
-        href="/about-me"
+      <nuxt-link
+        :to="localePath('/about-me')"
         class="block py-1 text-gray-600 hover:text-gray-400 font-extralight"
-        >About me</a
+        >{{ $t('nav.about') }}</nuxt-link
       >
-      <a
-        href="/gallery"
+      <nuxt-link
+        :to="localePath('/gallery')"
         class="block py-1 text-gray-600 hover:text-gray-400 font-extralight"
-        >Portfolio</a
+        >{{ $t('nav.portfolio') }}</nuxt-link
       >
-      <a
-        href="/contact"
+      <nuxt-link
+        :to="localePath('/contact')"
         class="block py-1 text-gray-600 hover:text-gray-400 font-extralight"
-        >Contact</a
+        >{{ $t('nav.contact') }}</nuxt-link
+      >
+      <!-- Language Switcher -->
+      <div class="relative" x-data="{ languageDropdown : false }">
+        <button
+          @click="languageDropdown = !languageDropdown"
+          class="flex items-center py-1 text-gray-600 hover:text-gray-400 font-extralight focus:outline-none"
+        >
+          {{ $i18n.locale === 'fr' ? 'FR' : 'EN' }}
+          <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+        <div
+          x-show="languageDropdown"
+          @click.away="languageDropdown = false"
+          x-transition:enter="transition ease-out duration-200"
+          x-transition:enter-start="opacity-0 scale-95"
+          x-transition:enter-end="opacity-100 scale-100"
+          x-transition:leave="transition ease-in duration-75"
+          x-transition:leave-start="opacity-100 scale-100"
+          x-transition:leave-end="opacity-0 scale-95"
+          class="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg z-30 min-w-[80px]"
+        >
+          <nuxt-link
+            :to="switchLocalePath('fr')"
+            class="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+            @click="languageDropdown = false"
+          >
+            FR
+          </nuxt-link>
+          <nuxt-link
+            :to="switchLocalePath('en')"
+            class="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+            @click="languageDropdown = false"
+          >
+            EN
+          </nuxt-link>
+        </div>
+      </div>
       >
     </nav>
   </header>

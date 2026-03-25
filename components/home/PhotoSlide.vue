@@ -4,7 +4,7 @@
       
       <div class="flex-grow md:flex-grow-0 px-8">
       <br/>
-      <img class="mx-auto rounded-xl" src="/galeria/portada/asturias-1.jpg"/>
+      <img class="mx-auto rounded-xl" src="/galeria/portada/asturias-1.jpg" :alt="$t('pages.home.heroImageAlt')"/>
       </div>
       
     </div>

@@ -1,12 +1,12 @@
 <template>
   <div>
     <article class="text-lg px-6 py-6 text-gray-600 mx-auto max-w-2xl">
-      <h2 class="text-xl font-semibold">Sobre mí</h2>
+      <h2 class="text-xl font-semibold">{{ $t('pages.about.title') }}</h2>
       <p class="mt-6">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet lorem in libero faucibus euismod nec in metus. Quisque at facilisis magna. Donec rhoncus bibendum tincidunt. Vestibulum non orci eget dolor eleifend mollis eu sit amet nunc. Cras malesuada sem nec malesuada cursus.
+        {{ $t('pages.about.content') }}
       </p>
       <p class="mt-6">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet lorem in libero faucibus euismod nec in metus. Quisque at facilisis magna. Donec rhoncus bibendum tincidunt. Vestibulum non orci eget dolor eleifend mollis eu sit amet nunc. Cras malesuada sem nec malesuada cursus.
+        {{ $t('pages.about.content2') }}
       </p>
     </article>
   </div>
@@ -14,5 +14,18 @@
 
 
 <script>
-export default {}
+export default {
+  head() {
+    return {
+      title: this.$t('pages.about.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('pages.about.content')
+        }
+      ]
+    }
+  }
+}
 </script>
