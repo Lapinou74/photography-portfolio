@@ -1,14 +1,14 @@
 <template>
-  <div class="px-8 py-12">
+  <div class="px-8 py-12 bg-white dark:bg-gray-900 transition-colors duration-200">
     <div
-      class="max-w-screen-xl mt-12 px-8 grid gap-8 grid-cols-1 md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 py-16 mx-auto bg-gray-100 text-gray-900 rounded-lg shadow-lg"
+      class="max-w-screen-xl mt-12 px-8 grid gap-8 grid-cols-1 md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 py-16 mx-auto bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg shadow-lg transition-colors duration-200"
     >
       <div class="flex flex-col justify-between">
         <div>
-          <h2 class="text-4xl lg:text-5xl font-bold leading-tight">
+          <h2 class="text-4xl lg:text-5xl font-bold leading-tight text-gray-900 dark:text-gray-100">
             {{ $t('pages.contact.heading') }}
           </h2>
-          <div class="text-gray-700 mt-8" v-html="$t('pages.contact.subtext')">
+          <div class="text-gray-700 dark:text-gray-300 mt-8" v-html="$t('pages.contact.subtext')">
           </div>
         </div>
         <div class="mt-8 text-center">
