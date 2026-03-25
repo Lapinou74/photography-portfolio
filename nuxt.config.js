@@ -59,7 +59,41 @@ export default {
   // Content module configuration: https://go.nuxtjs.dev/config-content
   content: {},
 
+  // Development server configuration
+  server: {
+    port: 3000,
+    host: 'localhost'
+  },
+
+  // Watch configuration for hot reload
+  watchers: {
+    webpack: {
+      aggregateTimeout: 300,
+      poll: 1000
+    }
+  },
+
+  // Development configuration
+  dev: process.env.NODE_ENV !== 'production',
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    // Hot reload configuration
+    hotMiddleware: {
+      client: {
+        overlay: true,
+        reload: true
+      }
+    },
+    
+    // Extract CSS for better hot reload
+    extractCSS: false,
+    
+    // Enable source maps for development
+    extend(config, { isDev, isClient }) {
+      if (isDev && isClient) {
+        config.devtool = 'eval-source-map'
+      }
+    }
   }
 }
