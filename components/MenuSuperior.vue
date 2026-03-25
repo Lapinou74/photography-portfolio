@@ -49,45 +49,14 @@
         class="block py-1 text-gray-600 hover:text-gray-400 font-extralight"
         >{{ $t('nav.contact') }}</nuxt-link
       >
-      <!-- Language Switcher -->
-      <div class="relative" x-data="{ languageDropdown : false }">
-        <button
-          @click="languageDropdown = !languageDropdown"
-          class="flex items-center py-1 text-gray-600 hover:text-gray-400 font-extralight focus:outline-none"
-        >
-          {{ $i18n.locale === 'fr' ? 'FR' : 'EN' }}
-          <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-          </svg>
-        </button>
-        <div
-          x-show="languageDropdown"
-          @click.away="languageDropdown = false"
-          x-transition:enter="transition ease-out duration-200"
-          x-transition:enter-start="opacity-0 scale-95"
-          x-transition:enter-end="opacity-100 scale-100"
-          x-transition:leave="transition ease-in duration-75"
-          x-transition:leave-start="opacity-100 scale-100"
-          x-transition:leave-end="opacity-0 scale-95"
-          class="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg z-30 min-w-[80px]"
-        >
-          <nuxt-link
-            :to="switchLocalePath('fr')"
-            class="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-            @click="languageDropdown = false"
-          >
-            FR
-          </nuxt-link>
-          <nuxt-link
-            :to="switchLocalePath('en')"
-            class="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-            @click="languageDropdown = false"
-          >
-            EN
-          </nuxt-link>
-        </div>
-      </div>
+      <!-- Language Toggle Button -->
+      <nuxt-link
+        :to="switchLocalePath($i18n.locale === 'fr' ? 'en' : 'fr')"
+        class="flex items-center py-1 px-2 text-gray-600 hover:text-gray-400 font-extralight focus:outline-none hover:bg-gray-100 rounded transition-colors duration-200"
+        :title="$i18n.locale === 'fr' ? 'Switch to English' : 'Passer en français'"
       >
+        <span class="text-lg">{{ $i18n.locale === 'fr' ? '🇬🇧' : '🇫🇷' }}</span>
+      </nuxt-link>
     </nav>
   </header>
 </template>
@@ -102,6 +71,9 @@ export default {
     return {
       mobileMenuOpen: false
     };
+  },
+  methods: {
+    // Mobile menu can be added here if needed
   }
 };
 </script>
