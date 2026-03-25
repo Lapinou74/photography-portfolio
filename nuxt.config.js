@@ -8,9 +8,6 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'sergioperea-photo-portfolio-2021',
-    htmlAttrs: {
-      lang: 'es'
-    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -50,7 +47,9 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/content
-    '@nuxt/content'
+    '@nuxt/content',
+    // https://i18n.nuxtjs.org/
+    '@nuxtjs/i18n'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -58,6 +57,32 @@ export default {
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
   content: {},
+
+  // i18n module configuration
+  i18n: {
+    locales: [
+      {
+        code: 'fr',
+        name: 'Français',
+        iso: 'fr-FR',
+        file: 'fr.js'
+      },
+      {
+        code: 'en',
+        name: 'English',
+        iso: 'en-US',
+        file: 'en.js'
+      }
+    ],
+    defaultLocale: 'fr',
+    langDir: 'lang/',
+    strategy: 'prefix_except_default',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root'
+    }
+  },
 
   // Development server configuration
   server: {

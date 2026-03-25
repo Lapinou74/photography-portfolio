@@ -3,11 +3,11 @@
     x-data="{ mobileMenuOpen : false }"
     class="flex flex-wrap flex-row justify-between md:items-center md:space-x-4 bg-white py-6 px-6 relative font-extralight"
   >
-    <a href="/" class="block">
+    <nuxt-link :to="localePath('/')" class="block">
       <span class="ext-indigo-600 hover:text-gray-400 font-light text-2xl "
         >sergio perea</span
       >
-    </a>
+    </nuxt-link>
     <button
       @click="mobileMenuOpen = !mobileMenuOpen"
       class="inline-block md:hidden w-8 h-8 bg-gray-200 text-gray-600 p-1"
@@ -29,26 +29,34 @@
       :class="{ flex: mobileMenuOpen, hidden: !mobileMenuOpen }"
       @click.away="mobileMenuOpen = false"
     >
-      <a
-        href="/"
+      <nuxt-link
+        :to="localePath('/')"
         class="block py-1 text-gray-600 hover:text-gray-400 font-extralight"
-        >Inicio</a
+        >{{ $t('nav.home') }}</nuxt-link
       >
-      <a
-        href="/about-me"
+      <nuxt-link
+        :to="localePath('/about-me')"
         class="block py-1 text-gray-600 hover:text-gray-400 font-extralight"
-        >About me</a
+        >{{ $t('nav.about') }}</nuxt-link
       >
-      <a
-        href="/gallery"
+      <nuxt-link
+        :to="localePath('/gallery')"
         class="block py-1 text-gray-600 hover:text-gray-400 font-extralight"
-        >Portfolio</a
+        >{{ $t('nav.portfolio') }}</nuxt-link
       >
-      <a
-        href="/contact"
+      <nuxt-link
+        :to="localePath('/contact')"
         class="block py-1 text-gray-600 hover:text-gray-400 font-extralight"
-        >Contact</a
+        >{{ $t('nav.contact') }}</nuxt-link
       >
+      <!-- Language Toggle Button -->
+      <nuxt-link
+        :to="switchLocalePath($i18n.locale === 'fr' ? 'en' : 'fr')"
+        class="flex items-center py-1 px-2 text-gray-600 hover:text-gray-400 font-extralight focus:outline-none hover:bg-gray-100 rounded transition-colors duration-200"
+        :title="$i18n.locale === 'fr' ? 'Switch to English' : 'Passer en français'"
+      >
+        <span class="text-lg">{{ $i18n.locale === 'fr' ? '🇬🇧' : '🇫🇷' }}</span>
+      </nuxt-link>
     </nav>
   </header>
 </template>
@@ -63,6 +71,9 @@ export default {
     return {
       mobileMenuOpen: false
     };
+  },
+  methods: {
+    // Mobile menu can be added here if needed
   }
 };
 </script>
