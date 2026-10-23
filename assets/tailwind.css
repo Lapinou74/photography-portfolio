@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-nature-50 text-nature-900;
+  }
+
+  .dark body {
+    @apply bg-gray-900 text-nature-100;
+  }
+
+  ::selection {
+    @apply bg-nature-200 text-nature-900;
+  }
+}

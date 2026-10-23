@@ -37,6 +37,10 @@ export default {
   css: [
   ],
 
+  tailwindcss: {
+    cssPath: '~/assets/tailwind.css'
+  },
+
   cloudinary_api_key: process.env.api_key,
   cloudinary_api_secret: process.env.api_secret,
   cloudinary_cloud_name: process.env.cloud_name,

@@ -1,130 +1,162 @@
 <template>
   <header
-    x-data="{ mobileMenuOpen : false }"
-    class="flex flex-wrap flex-row justify-between md:items-center md:space-x-4 bg-white dark:bg-gray-900 py-6 px-6 relative font-extralight transition-colors duration-200"
+    class="site-header sticky top-0 z-50 border-b border-nature-200 dark:border-gray-700 bg-nature-50 dark:bg-gray-900 py-6 font-extralight transition-colors duration-200"
+    :class="{ 'site-header--transparent': isTransparent }"
+    @keydown.esc="closeMobileMenu(true)"
   >
-    <nuxt-link :to="localePath('/')" class="block">
-      <span class="text-indigo-600 hover:text-gray-400 dark:text-gray-300 dark:hover:text-gray-400 font-light text-2xl transition-colors duration-200"
-        >sergio perea</span
-      >
-    </nuxt-link>
-    <button
-      @click="mobileMenuOpen = !mobileMenuOpen"
-      class="inline-block md:hidden w-8 h-8 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 p-1 transition-colors duration-200"
-    >
-      <svg
-        fill="currentColor"
-        viewBox="0 0 20 20"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          fill-rule="evenodd"
-          d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-          clip-rule="evenodd"
-        ></path>
-      </svg>
-    </button>
-    <nav
-      class="absolute md:relative top-16 left-0 md:top-0 z-20 md:flex flex-col md:flex-row md:space-x-6 font-semibold w-full md:w-auto bg-white dark:bg-gray-900 shadow-md rounded-lg md:rounded-none md:shadow-none md:bg-transparent dark:md:bg-transparent p-6 pt-0 md:p-0 transition-colors duration-200"
-      :class="{ flex: mobileMenuOpen, hidden: !mobileMenuOpen }"
-      @click.away="mobileMenuOpen = false"
-    >
-      <nuxt-link
-        :to="localePath('/')"
-        class="block py-1 text-gray-600 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-400 font-extralight transition-colors duration-200"
-        >{{ $t('nav.home') }}</nuxt-link
-      >
-      <nuxt-link
-        :to="localePath('/about-me')"
-        class="block py-1 text-gray-600 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-400 font-extralight transition-colors duration-200"
-        >{{ $t('nav.about') }}</nuxt-link
-      >
-      <nuxt-link
-        :to="localePath('/gallery')"
-        class="block py-1 text-gray-600 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-400 font-extralight transition-colors duration-200"
-        >{{ $t('nav.portfolio') }}</nuxt-link
-      >
-      <nuxt-link
-        :to="localePath('/contact')"
-        class="block py-1 text-gray-600 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-400 font-extralight transition-colors duration-200"
-        >{{ $t('nav.contact') }}</nuxt-link
-      >
-      
-      <!-- Language and Dark Mode Controls -->
-      <div class="flex items-center space-x-3">
-        <!-- Language Toggle -->
-        <button
-          @click="toggleLanguage"
-          class="flex items-center py-1 text-gray-600 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-400 font-extralight focus:outline-none transition-colors duration-200"
-          :aria-label="$i18n.locale === 'fr' ? 'Switch to English' : 'Switch to French'"
-        >
-          <span class="text-lg">{{ $i18n.locale === 'fr' ? '🇫🇷' : '🇬🇧' }}</span>
-        </button>
-        
-        <!-- Dark Mode Toggle -->
-        <button
-          @click="toggleDarkMode"
-          class="flex items-center py-1 text-gray-600 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-400 font-extralight focus:outline-none transition-colors duration-200"
-          :aria-label="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'"
-        >
-          <!-- Sun Icon (show in dark mode) -->
-          <svg
-            v-if="isDarkMode"
-            class="w-5 h-5"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+    <div class="relative z-10 mx-auto max-w-[1600px] px-6 md:px-10 xl:px-16 2xl:px-28">
+      <div class="site-header__bar grid items-center gap-6">
+        <nav class="site-header__nav hidden lg:flex items-center lg:space-x-5 xl:space-x-8 text-lg xl:text-xl font-light">
+          <nuxt-link
+            v-for="item in navPages"
+            :key="item.path"
+            :to="localePath(item.path)"
+            class="block px-1 py-2 whitespace-nowrap text-nature-600 dark:text-nature-300 hover:text-nature-900 dark:hover:text-nature-200 transition-colors duration-200"
+            >{{ $t(`nav.${item.key}`) }}</nuxt-link
           >
-            <circle cx="12" cy="12" r="4"></circle>
-            <path d="m12 2 0 2"></path>
-            <path d="m12 20 0 2"></path>
-            <path d="m4.93 4.93 1.41 1.41"></path>
-            <path d="m17.66 17.66 1.41 1.41"></path>
-            <path d="m2 12 2 0"></path>
-            <path d="m20 12 2 0"></path>
-            <path d="m6.34 17.66-1.41 1.41"></path>
-            <path d="m19.07 4.93-1.41 1.41"></path>
-          </svg>
-          
-          <!-- Moon Icon (show in light mode) -->
-          <svg
-            v-else
-            class="w-5 h-5"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+        </nav>
+
+        <nuxt-link
+          :to="localePath('/')"
+          :aria-label="$t('nav.home')"
+          @click.native="closeMobileMenu()"
+          class="site-header__logo flex items-center justify-center w-12 h-12 md:w-14 md:h-14 border border-nature-300 dark:border-gray-600 text-[0.6rem] uppercase tracking-[0.35em] text-nature-500 dark:text-nature-400 transition-colors duration-200"
+        >
+          Logo
+        </nuxt-link>
+
+        <div class="site-header__actions flex justify-self-end items-center lg:space-x-5">
+          <nuxt-link
+            :to="localePath('/contact')"
+            class="site-header__contact hidden lg:block whitespace-nowrap text-lg xl:text-xl font-light border border-nature-600 dark:border-nature-300 rounded-md text-nature-600 dark:text-nature-300 hover:bg-nature-600 hover:text-white dark:hover:bg-nature-300 dark:hover:text-gray-900 transition-colors duration-200"
+            >{{ $t('nav.contact') }}</nuxt-link
           >
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
-        </button>
+
+          <header-controls
+            class="hidden lg:flex space-x-3"
+            :is-dark-mode="isDarkMode"
+            item-class="flex items-center px-1 py-2 text-nature-600 dark:text-nature-300 hover:text-nature-900 dark:hover:text-nature-200 transition-colors duration-200"
+            @toggle-language="toggleLanguage"
+            @toggle-theme="toggleDarkMode"
+          />
+
+          <button
+            ref="menuButton"
+            type="button"
+            class="inline-flex lg:hidden items-center justify-center w-10 h-10 -mr-2 text-nature-700 dark:text-nature-200 transition-colors duration-200"
+            aria-controls="mobile-menu"
+            :aria-expanded="mobileMenuOpen ? 'true' : 'false'"
+            :aria-label="$t(mobileMenuOpen ? 'nav.closeMenu' : 'nav.openMenu')"
+            @click="mobileMenuOpen = !mobileMenuOpen"
+          >
+            <svg
+              class="w-6 h-6"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <path v-if="mobileMenuOpen" d="M6 6l12 12M18 6L6 18" />
+              <path v-else d="M4 7h16M4 12h16M4 17h16" />
+            </svg>
+          </button>
+        </div>
       </div>
-    </nav>
+    </div>
+
+    <div
+      v-show="mobileMenuOpen"
+      id="mobile-menu"
+      class="site-header__overlay fixed inset-0 flex flex-col overflow-y-auto bg-nature-50 dark:bg-gray-900 lg:hidden"
+    >
+      <nav class="flex flex-col items-center space-y-7 text-2xl font-light">
+        <nuxt-link
+          v-for="item in navPages"
+          :key="item.path"
+          :to="localePath(item.path)"
+          class="text-nature-700 dark:text-nature-200 hover:text-nature-900 dark:hover:text-white transition-colors duration-200"
+          @click.native="closeMobileMenu()"
+          >{{ $t(`nav.${item.key}`) }}</nuxt-link
+        >
+        <nuxt-link
+          :to="localePath('/contact')"
+          class="text-nature-700 dark:text-nature-200 hover:text-nature-900 dark:hover:text-white transition-colors duration-200"
+          @click.native="closeMobileMenu()"
+          >{{ $t('nav.contact') }}</nuxt-link
+        >
+      </nav>
+
+      <header-controls
+        class="mt-auto pt-10 justify-center space-x-6"
+        :is-dark-mode="isDarkMode"
+        item-class="flex items-center p-2 text-nature-600 dark:text-nature-300 hover:text-nature-900 dark:hover:text-nature-200 transition-colors duration-200"
+        @toggle-language="toggleLanguage"
+        @toggle-theme="toggleDarkMode"
+      />
+    </div>
   </header>
 </template>
+
 <script>
+const navPages = require('~/config/navigation');
+import HeaderControls from '~/components/HeaderControls.vue';
+
+const DESKTOP_MIN_WIDTH = 1024;
+
 export default {
-  props: {
-    posts: {
-      type: Array
-    }
-  },
+  components: { HeaderControls },
   data() {
     return {
+      navPages,
       mobileMenuOpen: false,
-      isDarkMode: false
+      isDarkMode: false,
+      isScrolled: false
     };
+  },
+  computed: {
+    isTransparent() {
+      const heroPages = ['index', 'contact', ...navPages.map(item => item.path.slice(1))];
+      return heroPages.includes(this.getRouteBaseName()) && !this.isScrolled && !this.mobileMenuOpen;
+    }
+  },
+  watch: {
+    $route() {
+      this.closeMobileMenu();
+    },
+    mobileMenuOpen(open) {
+      document.documentElement.style.overflow = open ? 'hidden' : '';
+    }
   },
   mounted() {
     // Initialize dark mode from localStorage or system preference
     this.initializeDarkMode();
+    this.updateScroll();
+    window.addEventListener('scroll', this.updateScroll, { passive: true });
+    window.addEventListener('resize', this.onResize);
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.updateScroll);
+    window.removeEventListener('resize', this.onResize);
+    document.documentElement.style.overflow = '';
   },
   methods: {
+    closeMobileMenu(restoreFocus = false) {
+      if (!this.mobileMenuOpen) return;
+      this.mobileMenuOpen = false;
+      if (restoreFocus) {
+        this.$refs.menuButton.focus();
+      }
+    },
+    onResize() {
+      if (window.innerWidth >= DESKTOP_MIN_WIDTH) {
+        this.closeMobileMenu();
+      }
+    },
+    updateScroll() {
+      this.isScrolled = window.scrollY > 0;
+    },
     toggleLanguage() {
       // Switch between French and English
       const newLocale = this.$i18n.locale === 'fr' ? 'en' : 'fr';
@@ -157,4 +189,57 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.site-header__bar {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+}
+
+.site-header__logo {
+  grid-column: 2;
+}
+
+.site-header__contact {
+  padding: 5px 20px;
+}
+
+/* Starts the menu content below the header bar, which stays on top */
+.site-header__overlay {
+  padding-top: calc(var(--site-header-height) + 2.5rem);
+  padding-bottom: 2.5rem;
+}
+
+.site-header.site-header--transparent {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.site-header--transparent .site-header__nav a,
+.site-header--transparent .site-header__logo,
+.site-header--transparent .site-header__actions > button,
+.site-header--transparent .site-header__actions ::v-deep .header-controls a,
+.site-header--transparent .site-header__actions ::v-deep .header-controls button {
+  color: white;
+  border-color: rgba(255, 255, 255, 0.5);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+.site-header--transparent .site-header__nav a:hover,
+.site-header--transparent .site-header__logo:hover,
+.site-header--transparent .site-header__actions > button:hover,
+.site-header--transparent .site-header__actions ::v-deep .header-controls a:hover,
+.site-header--transparent .site-header__actions ::v-deep .header-controls button:hover {
+  opacity: 0.8;
+}
+
+.site-header--transparent .site-header__contact {
+  color: white;
+  border-color: white;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+.site-header--transparent .site-header__contact:hover {
+  background-color: white;
+  color: #2c170d;
+  text-shadow: none;
+}
+</style>

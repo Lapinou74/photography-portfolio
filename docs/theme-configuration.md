@@ -3,6 +3,31 @@
 ## Overview
 This project uses a centralized theme configuration system that provides consistent typography, colors, and styling across light and dark modes.
 
+## Color Palette (autumn)
+
+The `nature` color scale in `config/theme.js` holds autumn tones (warm cream,
+ochre, rust and deep brown) and is shared by the header, footer,
+pages, cards, buttons, and form controls:
+
+| Shades | Usage |
+| --- | --- |
+| 50 / 100 | Warm cream surfaces |
+| 200 / 300 | Subtle separators and borders |
+| 400 / 500 | Ochre and rust accents, secondary dark-mode text |
+| 600 / 700 | Burnt-sienna buttons, links, and body text |
+| 800 / 900 | Light-mode headings and deep text |
+
+In dark mode, surfaces and borders use neutral dark grays (Tailwind's
+`trueGray`, exposed as `gray`: `gray-900` for pages, `gray-800` for cards,
+`gray-600`/`gray-700` for borders) while text, buttons, and accents keep the
+autumn tones.
+
+Use `bg-nature-50 dark:bg-gray-900` for page backgrounds and
+`text-nature-600 dark:text-nature-300` for body text. Keep button text white
+on `bg-nature-600` (light mode) or `bg-nature-500` (dark mode).
+The Tailwind content list includes both theme configuration and composable
+utilities so their classes are included in production builds.
+
 ## Files Structure
 ```
 config/
@@ -113,8 +138,8 @@ const navStyles = themeConfig.typography.nav
 ## Dark Mode Support
 
 All typography classes automatically include dark mode variants using CSS classes like:
-- `text-gray-600 dark:text-gray-300`
-- `bg-white dark:bg-gray-900`
+- `text-nature-600 dark:text-nature-300`
+- `bg-nature-50 dark:bg-gray-900`
 
 ## Adding New Typography
 
@@ -125,8 +150,8 @@ To add new typography styles:
 typography: {
   // Add new component
   newComponent: {
-    light: 'text-gray-800 font-medium',
-    dark: 'text-gray-200 font-medium'
+    light: 'text-nature-800 font-medium',
+    dark: 'text-nature-200 font-medium'
   }
 }
 ```
@@ -135,7 +160,7 @@ typography: {
 ```javascript
 const themeClasses = {
   // Add shorthand access
-  newComponent: 'text-gray-800 dark:text-gray-200 font-medium transition-colors duration-200'
+  newComponent: 'text-nature-800 dark:text-nature-200 font-medium transition-colors duration-200'
 }
 ```
 

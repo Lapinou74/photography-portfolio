@@ -39,58 +39,58 @@ export const useTheme = () => {
   // Pre-built class combinations for common UI elements
   const themeClasses = {
     // Brand/Logo classes
-    brand: 'font-display text-indigo-600 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-400 font-light text-2xl transition-colors duration-200',
+    brand: 'font-display text-nature-600 dark:text-nature-300 hover:text-nature-900 dark:hover:text-nature-200 font-light text-2xl transition-colors duration-200',
     
     // Navigation classes
-    nav: 'font-nav text-gray-600 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-400 font-extralight transition-colors duration-200',
+    nav: 'font-nav text-nature-600 dark:text-nature-300 hover:text-nature-900 dark:hover:text-nature-200 font-extralight transition-colors duration-200',
     
     // Primary heading
-    heading1: 'font-heading text-5xl font-bold text-gray-800 dark:text-gray-200',
+    heading1: 'font-heading text-5xl font-bold text-nature-800 dark:text-nature-200',
     
     // Secondary heading
-    heading2: 'font-heading text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100',
+    heading2: 'font-heading text-4xl lg:text-5xl font-bold text-nature-900 dark:text-nature-100',
     
     // Tertiary heading
-    heading3: 'font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100',
+    heading3: 'font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-nature-900 dark:text-nature-100',
     
     // Gallery heading
-    galleryTitle: 'font-heading text-base font-bold text-indigo-600 dark:text-indigo-400',
+    galleryTitle: 'font-heading text-base font-bold text-nature-600 dark:text-nature-400',
     
     // Body text primary
-    bodyPrimary: 'font-body text-lg text-gray-600 dark:text-gray-300',
+    bodyPrimary: 'font-body text-lg text-nature-600 dark:text-nature-300',
     
     // Body text secondary  
-    bodySecondary: 'font-body text-xl text-gray-600 dark:text-gray-400',
+    bodySecondary: 'font-body text-xl text-nature-600 dark:text-nature-400',
     
     // Form label
-    formLabel: 'font-body uppercase text-sm text-gray-600 dark:text-gray-400 font-bold',
+    formLabel: 'font-body uppercase text-sm text-nature-600 dark:text-nature-400 font-bold',
     
     // Form input
-    formInput: 'font-body w-full bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-gray-100 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline dark:focus:ring-2 dark:focus:ring-blue-500 transition-colors duration-200',
+    formInput: 'font-body w-full bg-nature-50 dark:bg-gray-900 text-nature-900 dark:text-nature-100 placeholder-nature-500 dark:placeholder-nature-400 border border-nature-300 dark:border-gray-600 mt-2 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-nature-500 transition-colors duration-200',
     
     // Primary button
-    buttonPrimary: 'font-body bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200',
+    buttonPrimary: 'font-body bg-nature-600 hover:bg-nature-700 dark:bg-nature-500 dark:hover:bg-nature-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200',
     
     // Gallery card
-    galleryCard: 'font-body w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl dark:shadow-gray-700 transition-all duration-200',
+    galleryCard: 'font-body w-full bg-nature-50 dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl dark:shadow-gray-700 transition-all duration-200',
     
     // Gallery description
-    galleryDescription: 'font-body text-xl text-gray-700 dark:text-gray-300 font-bold'
+    galleryDescription: 'font-body text-xl text-nature-700 dark:text-nature-300 font-bold'
   }
 
   // Color utilities
   const colors = {
     text: {
-      primary: 'text-gray-900 dark:text-gray-100',
-      secondary: 'text-gray-600 dark:text-gray-300', 
-      tertiary: 'text-gray-500 dark:text-gray-400',
-      accent: 'text-indigo-600 dark:text-indigo-400',
-      muted: 'text-gray-400 dark:text-gray-500'
+      primary: 'text-nature-900 dark:text-nature-100',
+      secondary: 'text-nature-600 dark:text-nature-300',
+      tertiary: 'text-nature-500 dark:text-nature-400',
+      accent: 'text-nature-600 dark:text-nature-400',
+      muted: 'text-nature-500 dark:text-nature-400'
     },
     bg: {
-      primary: 'bg-white dark:bg-gray-900',
-      secondary: 'bg-gray-100 dark:bg-gray-800',
-      accent: 'bg-indigo-600 dark:bg-indigo-500'
+      primary: 'bg-nature-50 dark:bg-gray-900',
+      secondary: 'bg-nature-100 dark:bg-gray-800',
+      accent: 'bg-nature-600 dark:bg-nature-500'
     }
   }
 
@@ -108,11 +108,11 @@ export const themeConfig = require('~/config/theme')
 
 // Export commonly used class combinations
 export const typography = {
-  brand: 'font-display text-indigo-600 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-400 font-light text-2xl transition-colors duration-200',
-  nav: 'font-nav text-gray-600 dark:text-gray-300 hover:text-gray-400 dark:hover:text-gray-400 font-extralight transition-colors duration-200',
-  h1: 'font-heading text-5xl font-bold text-gray-800 dark:text-gray-200',
-  h2: 'font-heading text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100',
-  h3: 'font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100',
-  body1: 'font-body text-lg text-gray-600 dark:text-gray-300',
-  body2: 'font-body text-xl text-gray-600 dark:text-gray-400'
+  brand: 'font-display text-nature-600 dark:text-nature-300 hover:text-nature-900 dark:hover:text-nature-200 font-light text-2xl transition-colors duration-200',
+  nav: 'font-nav text-nature-600 dark:text-nature-300 hover:text-nature-900 dark:hover:text-nature-200 font-extralight transition-colors duration-200',
+  h1: 'font-heading text-5xl font-bold text-nature-800 dark:text-nature-200',
+  h2: 'font-heading text-4xl lg:text-5xl font-bold text-nature-900 dark:text-nature-100',
+  h3: 'font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-nature-900 dark:text-nature-100',
+  body1: 'font-body text-lg text-nature-600 dark:text-nature-300',
+  body2: 'font-body text-xl text-nature-600 dark:text-nature-400'
 }
