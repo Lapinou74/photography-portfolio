@@ -2,22 +2,57 @@ export default {
   // Navigation
   nav: {
     home: 'Home',
-    about: 'About me',
-    portfolio: 'Portfolio',
-    contact: 'Contact'
+    sessions: 'Photo sessions',
+    wedding: 'Wedding',
+    event: 'Event',
+    concert: 'Concert',
+    contact: 'Contact',
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
+    darkMode: 'Dark mode',
+    lightMode: 'Light mode'
+  },
+
+  footer: {
+    tagline: 'Photographer in Haute-Savoie',
+    about: 'Based in La Roche-sur-Foron, I support you with your photography projects across the Alps and beyond.',
+    legal: 'Legal notice',
+    privacy: 'Privacy'
   },
 
   // Pages
   pages: {
     home: {
-      title: 'Sergio Perea - Photographer',
-      description: 'Photography portfolio of Sergio Perea',
-      heroImageAlt: 'Main portfolio photo by Sergio Perea'
+      title: 'Adrien Jeannaux - Photographer',
+      description: 'Photography portfolio of Adrien Jeannaux',
+      subtitle: 'Photographer in Haute-Savoie'
     },
     about: {
       title: 'About me',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet lorem in libero faucibus euismod nec in metus. Quisque at facilisis magna. Donec rhoncus bibendum tincidunt. Vestibulum non orci eget dolor eleifend mollis eu sit amet nunc. Cras malesuada sem nec malesuada cursus.',
-      content2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet lorem in libero faucibus euismod nec in metus. Quisque at facilisis magna. Donec rhoncus bibendum tincidunt. Vestibulum non orci eget dolor eleifend mollis eu sit amet nunc. Cras malesuada sem nec malesuada cursus.'
+      heroSubtitle: 'Behind the lens',
+      content: 'All about me',
+      content2: 'to do'
+    },
+    servicePlaceholder: 'Page under construction',
+    sessions: {
+      title: 'Photo sessions',
+      subtitle: 'Portraits, couples, families: natural memories',
+      content: 'Photo session details coming soon: how it works, locations, packages and pricing.'
+    },
+    wedding: {
+      title: 'Wedding',
+      subtitle: 'Telling the story of your day, from getting ready to the party',
+      content: 'Wedding coverage details coming soon: how it works, packages and pricing.'
+    },
+    event: {
+      title: 'Event',
+      subtitle: 'Parties, seminars and moments worth sharing',
+      content: 'Event coverage details coming soon: event types, packages and pricing.'
+    },
+    concert: {
+      title: 'Concert',
+      subtitle: 'Capturing the energy of the stage',
+      content: 'Concert photography details coming soon: artists, venues, packages and pricing.'
     },
     contact: {
       title: 'Contact me',
@@ -34,17 +69,53 @@ export default {
         messagePlaceholder: 'Write your message here...'
       }
     },
-    gallery: {
-      title: 'Portfolio',
-      selectCategory: 'Select a category',
-      photoAlt: 'Portfolio photo',
-      categories: {
-        architecture: 'Architecture',
-        landscape: 'Landscape',
-        portrait: 'Portrait',
-        travel: 'Travel',
-        urban: 'Urban',
-        wildlife: 'Wildlife'
+    legalCommon: {
+      updated: 'Placeholder page – content to be completed.'
+    },
+    legal: {
+      title: 'Legal notice',
+      sections: {
+        publisher: {
+          title: 'Website publisher',
+          body: 'Adrien Jeannaux – Photographer\nLegal status: [to be completed]\nSIRET: [to be completed]\nAddress: [to be completed], Haute-Savoie, France\nEmail: {email}\nPublication director: Adrien Jeannaux'
+        },
+        hosting: {
+          title: 'Hosting',
+          body: 'Host: [hosting provider to be completed]\nAddress: [to be completed]\nWebsite: [to be completed]'
+        },
+        property: {
+          title: 'Intellectual property',
+          body: 'All photographs and content on this website are the exclusive property of Adrien Jeannaux unless stated otherwise. Any reproduction, distribution or use, in whole or in part, without prior written permission is prohibited.'
+        },
+        liability: {
+          title: 'Liability',
+          body: 'The information on this website is provided for guidance only. Adrien Jeannaux strives to keep it up to date but cannot guarantee its accuracy or completeness.'
+        }
+      }
+    },
+    privacy: {
+      title: 'Privacy policy',
+      sections: {
+        data: {
+          title: 'Data collected',
+          body: 'When you use the contact form or email me, I only collect the information you provide: name, email address and message content.'
+        },
+        purpose: {
+          title: 'How your data is used',
+          body: 'This data is only used to answer your request and organise a potential photo session. It is never sold or shared with third parties.'
+        },
+        retention: {
+          title: 'Retention period',
+          body: 'Your data is kept as long as needed to handle your request, then [period to be completed].'
+        },
+        rights: {
+          title: 'Your rights',
+          body: 'Under the GDPR, you have the right to access, rectify, erase and object to the processing of your data. To exercise these rights, write to me at {email}.'
+        },
+        cookies: {
+          title: 'Cookies and local storage',
+          body: 'This website does not use advertising cookies. It only stores your language and theme choice (light or dark) in your browser.'
+        }
       }
     }
   },

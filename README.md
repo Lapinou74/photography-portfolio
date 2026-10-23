@@ -75,12 +75,45 @@ More information about the usage of this directory in [the documentation](https:
 
 ### Features
 * Responsive design for tablets and mobiles
+* Full-width hero photo at the top of each main page (see below)
+* Shared footer on every page, modeled on a centered layout: logo, tagline, short activity description, navigation links, Instagram, and links to the placeholder `Mentions légales` (`pages/mentions-legales.vue`) and `Confidentialité` (`pages/confidentialite.vue`) pages. Fill in the `[à compléter]` fields in `lang/fr.js` and `lang/en.js` (`pages.legal` and `pages.privacy`).
 * Lightbox for viewing images in full size
 * Metadata loaded from a JS file, easy to modify
 * SEO friendly
 * Contributing
 
 I appreciate any contribution you make to this project. Please refer to the CONTRIBUTING.md for more details.
+
+### Page hero photos
+
+The header centers the home-linked logo, with the Séances photo,
+Mariage, Événement and Concert links on the left and an outlined Contact button
+(filled on hover), Instagram, language and theme icons on the right.
+The page list is shared by the header and footer in `config/navigation.js`.
+Below 1024 px, the logo stays centered and a burger icon opens a full-screen
+menu with all links, plus the Instagram, language and theme icons at the bottom
+(`components/HeaderControls.vue`).
+
+Each main page opens with a full-width photo (`components/PageHero.vue`).
+The sticky header overlays the photo with a transparent background and white
+controls at the top of the page. Scrolling restores its themed background and
+separator; pages without a hero always keep the themed header.
+The images are temporary placeholders from Unsplash (via picsum.photos).
+To use your own photos, replace these files while keeping the same names
+(landscape format, about 1920×1080 px, recommended):
+
+| Page | File |
+| --- | --- |
+| Home | `static/images/hero/home.jpg` |
+| Séances photo | `static/images/hero/seances-photo.jpg` |
+| Mariage | `static/images/hero/mariage.jpg` |
+| Événement | `static/images/hero/evenement.jpg` |
+| Concert | `static/images/hero/concert.jpg` |
+| Contact | `static/images/hero/contact.jpg` |
+
+The Séances photo, Mariage, Événement and Concert pages are placeholders built
+with `components/ServicePage.vue`; their texts live in `lang/fr.js` and
+`lang/en.js` (`pages.sessions`, `pages.wedding`, `pages.event`, `pages.concert`).
 
 ### License
 This project is licensed under the MIT License. See the LICENSE.md file for details.

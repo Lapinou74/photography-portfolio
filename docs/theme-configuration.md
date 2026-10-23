@@ -3,6 +3,46 @@
 ## Overview
 This project uses a centralized theme configuration system that provides consistent typography, colors, and styling across light and dark modes.
 
+## Color Palette (neutral base + forest accent)
+
+Photos are the main source of color, so the interface stays neutral and uses
+green only as an accent. Both scales live in `config/theme.js`:
+
+**`nature` – neutral base** (warm off-white to charcoal with a slight green
+undertone; the name is kept so existing `*-nature-*` classes keep working):
+
+| Shades | Usage |
+| --- | --- |
+| 50 / 100 | Page background and light stone panels (footer) |
+| 200 / 300 | Subtle separators and borders; dark-mode body text |
+| 400 / 500 | Secondary text |
+| 600 / 700 | Light-mode body text and links |
+| 800 / 900 | Light-mode headings and deep text |
+
+**`forest` – accent**, used sparingly. One green per background so titles and
+buttons always match:
+
+| Shades | Usage |
+| --- | --- |
+| 600 (`#2f7a43`) | Light mode: link and icon hovers, small labels, Contact button (outline, text and hover fill), filled buttons (white text) |
+| 700 | Light-mode filled button hover |
+| 300 (`#8db594`) | Dark mode and text over photos: link hovers, labels, Contact button, filled buttons (dark text) |
+| 200 | Dark-mode filled button hover |
+| 500 | Focus rings |
+| 200 / 900 | Text selection |
+
+In dark mode, surfaces and borders use neutral dark grays (lighter than pure
+black), exposed as `gray`: `gray-900` (`#1f1f1f`) for pages, `gray-800` for panels
+and cards, `gray-700` for separators and `gray-600` for input and logo borders
+(at least 3:1 against both surfaces). Green stays in the `forest` accents only.
+
+Use `bg-nature-50 dark:bg-gray-900` for page backgrounds and
+`text-nature-600 dark:text-nature-300` for body text. Use `forest` only for
+accents: filled buttons use `bg-forest-600` with white text (light mode) or
+`bg-forest-300` with `text-gray-900` (dark mode). All text/background pairs meet WCAG AA (4.5:1).
+The Tailwind content list includes both theme configuration and composable
+utilities so their classes are included in production builds.
+
 ## Files Structure
 ```
 config/
@@ -113,8 +153,8 @@ const navStyles = themeConfig.typography.nav
 ## Dark Mode Support
 
 All typography classes automatically include dark mode variants using CSS classes like:
-- `text-gray-600 dark:text-gray-300`
-- `bg-white dark:bg-gray-900`
+- `text-nature-600 dark:text-nature-300`
+- `bg-nature-50 dark:bg-gray-900`
 
 ## Adding New Typography
 
@@ -125,8 +165,8 @@ To add new typography styles:
 typography: {
   // Add new component
   newComponent: {
-    light: 'text-gray-800 font-medium',
-    dark: 'text-gray-200 font-medium'
+    light: 'text-nature-800 font-medium',
+    dark: 'text-nature-200 font-medium'
   }
 }
 ```
@@ -135,7 +175,7 @@ typography: {
 ```javascript
 const themeClasses = {
   // Add shorthand access
-  newComponent: 'text-gray-800 dark:text-gray-200 font-medium transition-colors duration-200'
+  newComponent: 'text-nature-800 dark:text-nature-200 font-medium transition-colors duration-200'
 }
 ```
 
