@@ -48,7 +48,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~plugins/vue-gallery.client.js',
-    { src: '~/plugins/lingallery.client.js', ssr: false }
+    { src: '~/plugins/lingallery.client.js', ssr: false },
+    '~/plugins/scrollbar.client.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

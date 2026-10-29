@@ -15,3 +15,42 @@
     @apply bg-forest-200 text-forest-900;
   }
 }
+
+/* Scrollbar: the native one is hidden so the page uses the full width.
+   A floating thumb (plugins/scrollbar.client.js) appears while scrolling
+   and fades out afterwards. */
+@layer base {
+  html {
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.page-scrollbar {
+  position: fixed;
+  top: 0;
+  right: 2px;
+  z-index: 9999;
+  width: 6px;
+  border-radius: 9999px;
+  background-color: theme('colors.nature.400');
+  opacity: 0;
+  pointer-events: none;
+  touch-action: none;
+  transition: opacity 0.6s ease-out, width 0.15s;
+}
+
+.page-scrollbar.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transition: width 0.15s;
+}
+
+.page-scrollbar:hover,
+.page-scrollbar.is-dragging {
+  width: 8px;
+  background-color: theme('colors.nature.500');
+}
